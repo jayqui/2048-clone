@@ -12,10 +12,10 @@ function move(direction) {
 $(document).ready(() => {
   $(document).keydown((e) => {
     switch(e.which) {
-      case 37: e.preventDefault(); move('left'); break;
-      case 38: e.preventDefault(); move('up'); break;
+      case 37: e.preventDefault(); move('left');  break;
+      case 38: e.preventDefault(); move('up');    break;
       case 39: e.preventDefault(); move('right'); break;
-      case 40: e.preventDefault(); move('down'); break;
+      case 40: e.preventDefault(); move('down');  break;
       default: return;
     }
   });
