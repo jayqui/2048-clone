@@ -229,6 +229,19 @@ describe 'DownShift' do
 
         board_transformed_5 = game.shift_column_down(board: board_before_5, column_number: 1)
         expect(board_transformed_5).to eq(board_after_5)
+
+        board_before_6 = [ [0,8,0,0],
+                           [0,8,0,0],
+                           [0,8,0,0],
+                           [0,2,0,0], ]
+
+        board_after_6 =  [ [0,0,0,0],
+                           [0,8,0,0],
+                           [0,16,0,0],
+                           [0,2,0,0], ]
+
+        board_transformed_6 = game.shift_column_down(board: board_before_6, column_number: 1)
+        expect(board_transformed_6).to eq(board_after_6)
       end
     end
   end

@@ -29,19 +29,27 @@ class Game
   end
 
   def left
-    swipe_left(board); randomly_fill_empty_space
+    original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
+    swipe_left(board)
+    randomly_fill_empty_space unless board == original_board
   end
 
   def right
-    swipe_right(board); randomly_fill_empty_space
+    original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
+    swipe_right(board)
+    randomly_fill_empty_space unless board == original_board
   end
 
   def up
-    swipe_up(board); randomly_fill_empty_space
+    original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
+    swipe_up(board)
+    randomly_fill_empty_space unless board == original_board
   end
 
   def down
-    swipe_down(board); randomly_fill_empty_space
+    original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
+    swipe_down(board)
+    randomly_fill_empty_space unless board == original_board
   end
 
   private
