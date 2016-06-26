@@ -12,12 +12,19 @@ module LeftShift
   end
 
   def combine_elements_left(row)
-    row.each_with_index do |ele, idx|
+    row.each_index do |idx|
       break if idx == row.length - 1
-      if row[idx] == row[idx + 1] && row[idx] != 0
-        row[idx] += row[idx + 1]
-        row[idx + 1] = 0
-        @changed_row = true
+      if row[idx] != 0
+        inner_counter = 1
+        while inner_counter < row.length
+          if row[idx] == row[idx + inner_counter]
+            row[idx] += row[idx + inner_counter]
+            row[idx + inner_counter] = 0
+            @changed_row = true
+            break
+          end
+          inner_counter += 1
+        end
       end
     end
     row

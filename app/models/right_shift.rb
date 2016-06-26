@@ -14,10 +14,17 @@ module RightShift
   def combine_elements_right(row)
     row.to_enum.with_index.reverse_each do |ele, idx|
       break if idx == 0
-      if row[idx] == row[idx - 1] && row[idx] != 0
-        row[idx] += row[idx - 1]
-        row[idx - 1] = 0
-        @changed_row = true
+      if row[idx] != 0
+        inner_counter = 1
+        while idx - inner_counter >= 0
+          if row[idx] == row[idx - inner_counter]
+            row[idx] += row[idx - inner_counter]
+            row[idx - inner_counter] = 0
+            @changed_row = true
+            break
+          end
+          inner_counter += 1
+        end
       end
     end
     row
