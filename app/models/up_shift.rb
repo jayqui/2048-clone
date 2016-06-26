@@ -13,10 +13,17 @@ module UpShift
   def combine_elements_up(board:, column_number:)
     board.each_index do |row_number|
       break if row_number == board.length - 1  # don't want to look off edge
-      if board[row_number][column_number] == board[row_number + 1][column_number] && board[row_number][column_number] != 0
-        board[row_number][column_number] += board[row_number + 1][column_number]
-        board[row_number + 1][column_number] = 0
-        @changed_column = true
+      if board[row_number][column_number] != 0
+        inner_counter = 1
+        while row_number + inner_counter < board.length
+          if board[row_number][column_number] == board[row_number + inner_counter][column_number]
+            board[row_number][column_number] += board[row_number + inner_counter][column_number]
+            board[row_number + inner_counter][column_number] = 0
+            @changed_column = true
+            break
+          end
+          inner_counter += 1
+        end
       end
     end
     board

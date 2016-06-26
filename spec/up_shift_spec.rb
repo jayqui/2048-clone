@@ -235,18 +235,29 @@ describe 'UpShift' do
 
   describe '#swipe_up' do
     it 'shifts up for all columns' do
-      board_before = [ [2,2,4,8],
-                       [2,2,4,0],
-                       [4,2,2,4],
-                       [4,2,2,4], ]
+      board_before_1 = [ [2,2,4,8],
+                         [2,2,4,0],
+                         [4,2,2,4],
+                         [4,2,2,4], ]
 
-      board_after  = [ [4,4,8,8],
-                       [8,4,4,8],
-                       [0,0,0,0],
-                       [0,0,0,0], ]
+      board_after_1  = [ [4,4,8,8],
+                         [8,4,4,8],
+                         [0,0,0,0],
+                         [0,0,0,0], ]
 
-      board_transformed = game.swipe_up(board_before)
-      expect(board_transformed).to eq(board_after)
+      expect(game.swipe_up(board_before_1)).to eq(board_after_1)
+
+      board_before_2 = [ [2,8,0,4],
+                         [2,0,8,8],
+                         [0,0,0,0],
+                         [4,8,8,8], ]
+
+      board_after_2  = [ [4,16,16, 4],
+                         [4, 0, 0,16],
+                         [0, 0, 0, 0],
+                         [0, 0, 0, 0], ]
+
+      expect(game.swipe_up(board_before_2)).to eq(board_after_2)
     end
   end
 end
