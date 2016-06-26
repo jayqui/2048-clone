@@ -25,7 +25,7 @@ class Game
   end
 
   def game_over?
-    no_empty_spaces_left? && no_contiguous_combinables?
+    !any_empty_spaces_left? && !any_contiguous_combinables?
   end
 
   def left
@@ -64,20 +64,21 @@ class Game
     board[rand_row][rand_column] = NEW_PIECES.sample
   end
 
-  def number_of_empty_spaces
-    board.map{|row| row.count(0)}.inject(:+)
+  def any_empty_spaces_left?
+    board.each do |row|
+      row.each do |ele|
+        return true if ele == 0
+      end
+    end
+    false
   end
 
-  def no_empty_spaces_left?
-    number_of_empty_spaces == 0
-  end
-
-  def no_contiguous_combinables?
+  def any_contiguous_combinables?
     # scan rows
     board.each do |row|
       row.each_index do |column_number|
         break if column_number == row.length - 1
-        return false if row[column_number] == row[column_number + 1]
+        return true if row[column_number] == row[column_number + 1]
       end
     end
 
@@ -85,11 +86,11 @@ class Game
     board.first.each_index do |column_number|
       board.each_index do |row_number|
         break if row_number == board.length - 1
-        return false if board[row_number][column_number] == board[row_number + 1][column_number]
+        return true if board[row_number][column_number] == board[row_number + 1][column_number]
       end
     end
 
-    true
+    false
   end
 
 end
