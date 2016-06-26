@@ -13,10 +13,17 @@ module DownShift
   def combine_elements_down(board:, column_number:)
     board.to_enum.with_index.reverse_each do |row, row_number|
       break if row_number == 0  # don't want to look off edge
-      if board[row_number][column_number] == board[row_number - 1][column_number] && board[row_number][column_number] != 0
-        board[row_number][column_number] += board[row_number - 1][column_number]
-        board[row_number - 1][column_number] = 0
-        @changed_column = true
+      if board[row_number][column_number] != 0
+        inner_counter = 1
+        while row_number - inner_counter >= 0
+          if board[row_number][column_number] == board[row_number - inner_counter][column_number]
+            board[row_number][column_number] += board[row_number - inner_counter][column_number]
+            board[row_number - inner_counter][column_number] = 0
+            @changed_column = true
+            break
+          end
+          inner_counter += 1
+        end
       end
     end
     board

@@ -235,18 +235,29 @@ describe 'DownShift' do
 
   describe '#swipe_down' do
     it 'shifts down for all columns' do
-      board_before = [ [2,2,4,8],
-                       [2,2,4,0],
-                       [4,2,2,4],
-                       [4,2,2,4], ]
+      board_before_1 = [ [4,2,2,4],
+                         [4,2,2,4],
+                         [2,2,4,0],
+                         [2,2,4,8], ]
 
-      board_after  = [ [0,0,0,0],
-                       [0,0,0,0],
-                       [4,4,8,8],
-                       [8,4,4,8], ]
+      board_after_1  = [ [0,0,0,0],
+                         [0,0,0,0],
+                         [8,4,4,8],
+                         [4,4,8,8], ]
 
-      board_transformed = game.swipe_down(board_before)
-      expect(board_transformed).to eq(board_after)
+      expect(game.swipe_down(board_before_1)).to eq(board_after_1)
+
+      board_before_2 = [ [4,8,8,8],
+                         [0,0,0,0],
+                         [2,0,8,8],
+                         [2,8,0,4], ]
+
+      board_after_2  = [ [0, 0, 0, 0],
+                         [0, 0, 0, 0],
+                         [4, 0, 0,16],
+                         [4,16,16, 4], ]
+
+      expect(game.swipe_down(board_before_2)).to eq(board_after_2)
     end
   end
 end
