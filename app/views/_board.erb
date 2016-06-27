@@ -1,5 +1,9 @@
 <div id="board-frame">
   <% game.board.each do |row| %>
-    <%= row %><br>
+    <% row.each do |square| %>
+      <div class="square sq-<%= square %>">
+        <span class="square-text"><%= square %></span>
+      </div>
+    <% end %><br>
   <% end %>
 </div>
