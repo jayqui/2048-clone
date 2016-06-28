@@ -9,7 +9,7 @@ class Game
   include UpShift
   include DownShift
 
-  attr_reader :board, :new_piece_coordinates
+  attr_reader :board, :new_piece_coordinates, :collision_points
 
   NEW_PIECES = [2,2,2,2,4] # randomly sample from this
 
@@ -20,6 +20,7 @@ class Game
                [0,0,0,0], ]
     @changed_row = nil
     @changed_column = nil
+    @collision_points = []
 
     2.times { randomly_fill_empty_space }
   end
@@ -29,24 +30,28 @@ class Game
   end
 
   def left
+    @collision_points = []
     original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
     swipe_left(board)
     randomly_fill_empty_space unless board == original_board
   end
 
   def right
+    @collision_points = []
     original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
     swipe_right(board)
     randomly_fill_empty_space unless board == original_board
   end
 
   def up
+    @collision_points = []
     original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
     swipe_up(board)
     randomly_fill_empty_space unless board == original_board
   end
 
   def down
+    @collision_points = []
     original_board = Marshal.load(Marshal.dump(board)) # deep duplication of the multi-dimensional array
     swipe_down(board)
     randomly_fill_empty_space unless board == original_board

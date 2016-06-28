@@ -1,9 +1,16 @@
 <div id="board-frame">
+  collision_points: <%= game.collision_points.inspect %>
+  <br>
+  <br>
+  <br>
+
   <% game.board.each_with_index do |row, row_index| %>
     <% row.each_with_index do |square, square_index| %>
 
-      <% new_piece = row_index == game.new_piece_coordinates.first && square_index == game.new_piece_coordinates.last %>
-      <div class="square sq-<%= square %> <%= "new-piece" if new_piece %>">
+      <% new_piece       = row_index == game.new_piece_coordinates.first && square_index == game.new_piece_coordinates.last %>
+      <% collision_point = game.collision_points.include?([row_index, square_index]) if game.collision_points %>
+
+      <div class="square sq-<%= square %> <%= "new-piece" if new_piece %> <%= "collision-point" if collision_point %>">
         <span class="square-text">
           <%= square %>
         </span>

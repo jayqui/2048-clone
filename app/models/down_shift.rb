@@ -17,6 +17,9 @@ module DownShift
         inner_counter = 1
         while row_number - inner_counter >= 0
           if board[row_number][column_number] == board[row_number - inner_counter][column_number]
+
+            @collision_points << [row_number, column_number]
+
             board[row_number][column_number] += board[row_number - inner_counter][column_number]
             board[row_number - inner_counter][column_number] = 0
             @changed_column = true

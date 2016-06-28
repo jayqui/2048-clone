@@ -1,3 +1,5 @@
+require 'pry'
+
 module LeftShift
 
   def shift_element_left(array, idx)
@@ -18,6 +20,9 @@ module LeftShift
         inner_counter = 1
         while inner_counter < row.length
           if row[idx] == row[idx + inner_counter]
+
+            @collision_points << [board.index(row), idx]
+
             row[idx] += row[idx + inner_counter]
             row[idx + inner_counter] = 0
             @changed_row = true

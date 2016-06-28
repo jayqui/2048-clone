@@ -18,6 +18,9 @@ module RightShift
         inner_counter = 1
         while idx - inner_counter >= 0
           if row[idx] == row[idx - inner_counter]
+
+            @collision_points << [board.index(row), idx]
+
             row[idx] += row[idx - inner_counter]
             row[idx - inner_counter] = 0
             @changed_row = true
