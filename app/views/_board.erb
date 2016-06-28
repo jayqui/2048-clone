@@ -1,8 +1,12 @@
 <div id="board-frame">
-  <% game.board.each do |row| %>
-    <% row.each do |square| %>
-      <div class="square sq-<%= square %>">
-        <span class="square-text"><%= square %></span>
+  <% game.board.each_with_index do |row, row_index| %>
+    <% row.each_with_index do |square, square_index| %>
+
+      <% new_piece = row_index == game.new_piece_coordinates.first && square_index == game.new_piece_coordinates.last %>
+      <div class="square sq-<%= square %> <%= "new-piece" if new_piece %>">
+        <span class="square-text">
+          <%= square %>
+        </span>
       </div>
     <% end %><br>
   <% end %>

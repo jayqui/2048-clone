@@ -9,7 +9,7 @@ class Game
   include UpShift
   include DownShift
 
-  attr_reader :board
+  attr_reader :board, :new_piece_coordinates
 
   NEW_PIECES = [2,2,2,2,4] # randomly sample from this
 
@@ -61,6 +61,7 @@ class Game
     until board[rand_row][rand_column] == 0
       rand_row, rand_column = rand(4), rand(4)
     end
+    @new_piece_coordinates = [rand_row, rand_column]
     board[rand_row][rand_column] = NEW_PIECES.sample
   end
 
