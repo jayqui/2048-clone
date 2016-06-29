@@ -109,6 +109,15 @@ describe 'RightShift' do
           expect(game.shift_row_right([8,0,8,4])).to eq([0,0,16,4])
         end
       end
+
+      context 'when there are equivalent elements separated by non-zero elements' do
+        it 'combines exactly once and finishes rightward movement' do
+          expect(game.shift_row_right([8,4,2,8])).to eq([8,4,2,8])
+          expect(game.shift_row_right([4,2,2,4])).to eq([0,4,4,4])
+          expect(game.shift_row_right([8,4,8,0])).to eq([0,8,4,8])
+          expect(game.shift_row_right([8,4,8,8])).to eq([0,8,4,16])
+        end
+      end
     end
   end
 

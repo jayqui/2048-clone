@@ -243,6 +243,51 @@ describe 'DownShift' do
         board_transformed_6 = game.shift_column_down(board: board_before_6, column_number: 1)
         expect(board_transformed_6).to eq(board_after_6)
       end
+
+      context 'when there are equivalent elements separated by non-zero elements' do
+        it 'combines exactly once and finishes downward movement' do
+
+          board_before_1 = [ [0,4,0,0],
+                             [0,8,0,0],
+                             [0,4,0,0],
+                             [0,0,0,0], ]
+
+          board_after_1 =  [ [0,0,0,0],
+                             [0,4,0,0],
+                             [0,8,0,0],
+                             [0,4,0,0], ]
+
+          board_transformed_1 = game.shift_column_down(board: board_before_1, column_number: 1)
+          expect(board_transformed_1).to eq(board_after_1)
+
+          board_before_2 = [ [0,4,0,0],
+                             [0,2,0,0],
+                             [0,2,0,0],
+                             [0,4,0,0], ]
+
+          board_after_2 =  [ [0,0,0,0],
+                             [0,4,0,0],
+                             [0,4,0,0],
+                             [0,4,0,0], ]
+
+          board_transformed_2 = game.shift_column_down(board: board_before_2, column_number: 1)
+          expect(board_transformed_2).to eq(board_after_2)
+
+          board_before_3 = [ [0,8,0,0],
+                             [0,2,0,0],
+                             [0,4,0,0],
+                             [0,4,0,0], ]
+
+          board_after_3 =  [ [0,0,0,0],
+                             [0,8,0,0],
+                             [0,2,0,0],
+                             [0,8,0,0], ]
+
+          board_transformed_3 = game.shift_column_down(board: board_before_3, column_number: 1)
+          expect(board_transformed_3).to eq(board_after_3)
+
+        end
+      end
     end
   end
 

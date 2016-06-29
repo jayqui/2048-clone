@@ -118,6 +118,15 @@ describe 'LeftShift' do
           expect(game.shift_row_left([4,8,0,8])).to eq([4,16,0,0])
         end
       end
+
+      context 'when there are equivalent elements separated by non-zero elements' do
+        it 'combines exactly once and finishes leftward movement' do
+          expect(game.shift_row_left([8,4,2,8])).to eq([8,4,2,8])
+          expect(game.shift_row_left([4,2,2,4])).to eq([4,4,4,0])
+          expect(game.shift_row_left([8,4,8,0])).to eq([8,4,8,0])
+          expect(game.shift_row_left([8,4,8,8])).to eq([8,4,16,0])
+        end
+      end
     end
   end
 
