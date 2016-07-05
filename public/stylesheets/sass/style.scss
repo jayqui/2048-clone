@@ -8,8 +8,16 @@ body {
   padding: 5px;
   border-radius: 2.5%;
 
+  .squareframe {
+    border: 1px solid lightgrey;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 0 -1px;
+    background-color: #eee;
+  }
+
   .square {
-    background-color: #ddd;
     width: 100px;
     height: 100px;
     border-radius: 10%;
@@ -20,41 +28,81 @@ body {
     display: inline-block;
     font-size: 2.4em;
 
-    /* Chrome, Safari, Opera */
-    @-webkit-keyframes entry {
-      0%   {transform: scale(0.9,0.9)}
-      100% {transform: scale(1,1);}
+
+    /*NOTE ON KEYFRAMES*/
+    /*MY UNDERSTANDING IS THAT:*/
+      /*@-webkit-keyframes IS FOR CHROME, SAFARI, & OPERA*/
+      /*AND THAT @keyframes IS FOR OTHER BROWSERS E.G. FIREFOX & SAFARI*/
+
+    /** appear **/
+    @-webkit-keyframes appear {
+      0%   {-webkit-transform: scale(0.9,0.9)}
+      100% {-webkit-transform: scale(1,1);}
     }
-    /* Standard syntax */
-    @keyframes entry {
+    @keyframes appear {
       0%   {transform: scale(0.9,0.9)}
       100% {transform: scale(1,1);}
     }
 
-    /* Chrome, Safari, Opera */
+    /** collision **/
     @-webkit-keyframes collision {
-      0%   {transform: scale(1,1)}
-      100% {transform: scale(1.2,1.2);}
+      0%   {-webkit-transform: scale(1,1)}
+      100% {-webkit-transform: scale(1.2,1.2);}
     }
-    /* Standard syntax */
     @keyframes collision {
       0%   {transform: scale(1,1)}
       50%  {transform: scale(1.2,1.2);}
       100% {transform: scale(1,1);}
     }
+
+    /** SLIDES **/
+    @-webkit-keyframes slideRightOne {
+      0%   {-webkit-transform: translateX(0);}
+      100% {-webkit-transform: translateX(102px);}
+    }
+    @keyframes slideRightOne {
+      0%   {transform: translateX(0);}
+      100% {transform: translateX(102px);}
+    }
+
+    @-webkit-keyframes slideLeftOne {
+      0%   {-webkit-transform: translateX(0);}
+      100% {-webkit-transform: translateX(-102px);}
+    }
+    @keyframes slideLeftOne {
+      0%   {transform: translateX(0);}
+      100% {transform: translateX(-102px);}
+    }
+
+    @-webkit-keyframes slideUpOne {
+      0%   {-webkit-transform: translateY(0);}
+      100% {-webkit-transform: translateX(-102px);}
+    }
+    @keyframes slideUpOne {
+      0%   {transform: translateY(0);}
+      100% {transform: translateY(-102px);}
+    }
+
+    @-webkit-keyframes slideDownOne {
+      0%   {-webkit-transform: translateY(0);}
+      100% {-webkit-transform: translateX(102px);}
+    }
+    @keyframes slideDownOne {
+      0%   {transform: translateY(0);}
+      100% {transform: translateY(102px);}
+    }
   }
 
   .new-piece {
-    -webkit-animation: entry 0.4s; /* Chrome, Safari, Opera */
-    animation: entry 0.4s;
+    animation: appear 0.25s;
   }
   .collision-point {
-    -webkit-animation: collision 0.6s; /* Chrome, Safari, Opera */
-    animation: collision 0.6s;
+    animation: collision 0.25s;
   }
 
   .sq-0 {
     color: #ddd;
+    visibility: hidden;
     .square-text {
       visibility: hidden;
     }
