@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'pathname'
 
 # helper constants for configuration
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
